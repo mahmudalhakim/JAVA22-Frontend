@@ -1,0 +1,45 @@
+.heading {
+
+    text-align: center;
+
+}
+
+.contact-h1 {
+
+    text-align: right;
+
+}
+
+.index {
+
+    background-color: #fcf2e6;
+}
+
+#index p {
+
+    color: #8a2be2
+}
+
+#contact p {
+
+    color: #008000;
+
+}
+
+#about h1 {
+
+    color: darkcyan;
+
+}
+
+p {
+    color: #ff0000;
+}
+
+.header {
+
+    border: 1px solid #8a2be2;
+    margin-top: 10px;
+    padding: 10px;
+
+}

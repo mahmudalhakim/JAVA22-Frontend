@@ -1,0 +1,17 @@
+body {
+    color: #00008b;
+}
+
+h1,
+h2,
+h3 {
+    color: #000;
+}
+
+p {
+    color: #a52a2a;
+
+    /* OBS! Nedanståene egenskap gäller ej pga kaskadorningen.
+    background-color finns internt i Style-taggen */
+    background-color: #ff0000;
+}
