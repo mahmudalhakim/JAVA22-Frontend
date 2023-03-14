@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="loadBtn">Visa alla namn</button>
+    <div id="output"></div>
+
+    <script>
+
+fetch("http://127.0.0.1:5500/test.json", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "sv,en-US;q=0.9,en;q=0.8,ar;q=0.7,la;q=0.6,ru;q=0.5,da;q=0.4,de;q=0.3,nb;q=0.2",
+    "if-modified-since": "Fri, 10 Mar 2023 11:20:25 GMT",
+    "if-none-match": "W/\"32a1-186cb402b11\"",
+    "sec-ch-ua": "\"Chromium\";v=\"110\", \"Not A(Brand\";v=\"24\", \"Google Chrome\";v=\"110\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin"
+  },
+  "referrer": "http://127.0.0.1:5500/test.html",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "omit"
+});
+
+let loadBtn = document.getElementById("loadBtn");
+        loadBtn.addEventListener("click", load);
+
+        async function getText(file) {
+            let myObject = await fetch(file);
+            let myText = await myObject.text();
+            myDisplay(myText);
+        }
+
+        function load() {
+
+            fetch("test.json")
+                .then(resp => resp.json())
+                .then(data => render(data))
+                .catch(err => console.error(err));
+
+        }
+
+
+        function render(json) {
+            let output = "";
+
+            json.forEach((p) => {
+                output += p.title + "<br>";
+            });
+
+            document.getElementById("output").innerHTML = output;
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>
