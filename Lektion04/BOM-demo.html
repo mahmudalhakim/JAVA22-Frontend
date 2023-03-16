@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM - Demo</title>
+</head>
+<body>
+    <h1>BOM - Demo</h1>
+
+    <script>
+
+        window.alert("Welcome to BOM");
+        let person = window.prompt("Vad heter du?");
+        alert("Hello " + person);
+
+        let q = confirm("Vill du fortsätta");
+        alert(q); // true / false
+
+        
+        let x1 = prompt("Ange tal 1");
+        let x2 = prompt("Ange tal 1");
+        x1 = Number(x1);
+        x2 = Number(x2);
+        let sum = "Summa = " + (x1 + x2);
+        
+    </script>
+</body>
+</html>

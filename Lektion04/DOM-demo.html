@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Demo</title>
+</head>
+
+<body>
+    <h1>DOM Demo</h1>
+
+    <div id="demo"></div>
+
+    <script>
+
+        document.write("Hello from DOM");
+
+        const el = document.getElementById('demo');
+        el.innerHTML = "<h2>innerHTML demo</h2>";
+        el.style.color = 'blue';
+        el.style.fontSize = '3em';
+        el.style.display = 'none'; // Ta bort elementet
+
+
+    </script>
+</body>
+
+</html>

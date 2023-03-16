@@ -1,0 +1,1 @@
+print("Hej från functions-02.js");

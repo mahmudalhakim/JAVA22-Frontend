@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+
+<body>
+    <h1>Events</h1>
+
+    <!-- Inline JS rekommenderas inte -->
+    <button onclick="console.log('Inline JS')">Inline JS</button>
+
+    <hr>
+
+    <button onclick="print()">Kör en funktion utan argument</button>
+    <!-- undefined -->
+
+    <hr>
+
+    <button onclick="print('Hello World')">Kör en funktion med argument</button>
+
+    <hr>
+
+    <button onclick="print('Hello'); print('World');">Kör två funktioner</button>
+
+    <hr>
+
+    <button onclick="print(this)">THIS </button>
+
+    <hr>
+
+    <button onclick="showTime();">Visa klockan</button>
+    <h2 id="time"></h2>
+
+    <hr>
+
+    <button onclick="showDate();">Visa dagens datum</button>
+    <h2 id="date"></h2>
+
+    <hr>
+
+    <div>
+        <label for="password"> Ange lösenord: </label>
+        <input id="password" type="password">
+    </div>
+    <div>
+        <input id="showHide" onclick="showHide()" type="checkbox">
+        <label for="showHide"> Visa lösenordet </label>
+    </div>
+
+
+    <script>
+
+        function print(message) {
+            console.log(message)
+        }
+
+        function showTime() {
+            document.getElementById('time').innerHTML = new Date().toLocaleTimeString();
+        }
+
+        function showDate() {
+            const days = [
+                'Söndag',
+                'Måndag',
+                'Tisdag',
+                'Onsdag',
+                'Torsdag',
+                'Fredag',
+                'Lördag'
+            ];
+
+            const months = [
+                'jan',
+                'feb',
+                'mar',
+                'apr',
+                'maj',
+                'jun',
+                'jul',
+                'aug',
+                'sep',
+                'okt',
+                'nov',
+                'dec'
+            ]
+
+            let today = new Date();
+            date = days[today.getDay()] +
+                " den " +
+                today.getDay() +
+                " " +
+                months[today.getMonth()] +
+                " " +
+                today.getFullYear();
+            console.log(date);
+
+            document.getElementById('date').innerHTML = date;
+
+        }
+
+        function showHide() {
+
+            const password = document.getElementById('password');
+            const checkbox = document.getElementById('showHide');
+            if (checkbox.checked) {
+                password.type = 'text';
+            }
+            else {
+                password.type = 'password';
+            }
+            console.log(checkbox)
+
+
+        }
+    </script>
+</body>
+
+</html>
