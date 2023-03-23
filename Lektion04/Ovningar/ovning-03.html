@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Övning 3</title>
+</head>
+
+<body>
+    <h1>Övning 3</h1>
+
+    <div>
+        <label for="password"> Ange lösenord: </label>
+        <input id="password" type="password">
+    </div>
+    <div>
+        <input id="showHide" onclick="showHide()" type="checkbox">
+        <label for="showHide"> Visa lösenordet </label>
+    </div>
+
+
+    <script>
+
+        function showHide() {
+
+            const password = document.getElementById('password');
+            console.log(password);
+
+            const checkbox = document.getElementById('showHide');
+            console.log(checkbox);
+
+            if (checkbox.checked) {
+                password.type = 'text';
+            }
+            else {
+                password.type = 'password';
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

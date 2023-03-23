@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Övning 1</title>
+</head>
+
+<body>
+    <h1>Övning 1</h1>
+
+    <button onclick="showDate();">Visa dagens datum</button>
+    <h2 id="date"></h2>
+
+
+    <script>
+
+        function showDate() {
+            const days = [
+                'Söndag',
+                'Måndag',
+                'Tisdag',
+                'Onsdag',
+                'Torsdag',
+                'Fredag',
+                'Lördag'
+            ];
+
+            const months = [
+                'januari',
+                'februari',
+                'mars',
+                'april',
+                'maj',
+                'juni',
+                'juli',
+                'augusti',
+                'september',
+                'oktober',
+                'november',
+                'december'
+            ]
+
+            let today = new Date();
+
+            let date = days[today.getDay()] +
+                " den " +
+                today.getDate() +
+                " " +
+                months[today.getMonth()] +
+                " " +
+                today.getFullYear();
+
+            console.log(date);
+
+            document.getElementById('date').innerHTML = date;
+
+        }
+
+
+    </script>
+</body>
+
+</html>
