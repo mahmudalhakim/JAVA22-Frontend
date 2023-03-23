@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modernizr</title>
+</head>
+
+<body>
+
+    <h1>Modernizr</h1>
+    <h2>Testing Flash Support</h2>
+
+    <script src="modernizr-flash.js"></script>
+
+    <script>
+
+        if (Modernizr.flash) {
+            console.log("Yes. Flash is supported");
+            log("Flash is supported");
+        } else {
+            console.log("No. Flash is not supported");
+            alert("Sorry. Flash is not supported");
+        }
+
+    </script>
+</body>
+
+</html>
