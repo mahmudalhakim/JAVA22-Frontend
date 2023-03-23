@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage API</title>
+</head>
+
+<body>
+    <h1>Web Storage API</h1>
+
+    <script>
+
+        localStorage.setItem("fname", "Mahmud");
+        localStorage.setItem("lname", "Al Hakim");
+        localStorage.setItem("age", "50");
+        localStorage.setItem("point", "1000");
+
+        // Hämta värden från localStorage
+        console.log(localStorage.getItem("name"));  // OBS!  null
+        console.log(localStorage.getItem("fname")); // Mahmud
+
+
+        // Ta bort en nyckel
+        localStorage.removeItem("age");
+
+        // Iterera över alla nycklar och values
+        for (let i = 0; i < localStorage.length; i++) {
+            // Skriv ut nycklar
+            console.log("Key: " + localStorage.key(i));
+            // Skriv ut värden
+            console.log("Value: " + localStorage.getItem(localStorage.key(i)));
+        }
+
+        // Spara en array i LS
+        let arr1 = ['A', 'B', 'C'];
+        console.log(arr1);
+
+        // Ett felaktigt sätt att spara en array
+        localStorage.setItem("myArr1", arr1);  //  "A,B,C"  OBS! En sträng sparas
+        arr1 = localStorage.getItem("myArr1");
+        console.log(arr1[0]); // A
+        console.log(arr1[1]); // , 
+        console.log(arr1[2]); // B
+
+        // Spara en array (ett bättre sätt)
+        // Vi måste serialisera arrayen med JSON.stringify
+        arr1 = ['A', 'B', 'C'];
+        localStorage.setItem("myArr2", JSON.stringify(arr1));
+
+        // Hämta en array från LS
+        console.log(localStorage.getItem("myArr2")); // OBS! En sträng ["A","B","C"]
+        console.log(JSON.parse(localStorage.getItem("myArr2")));
+
+        // Spara ett objekt i LS
+        const obj = {
+            "id": 1,
+            "name": "iPhone 14",
+            "price": "14500",
+
+            // OBS! Metoder lagras ej i LS - Enbart data lagras i LS
+            "getPrice": function () {
+                console.log(this.price);
+            }
+        }
+
+        localStorage.setItem("myObj", obj); // FEL!
+        localStorage.setItem("myObj", JSON.stringify(obj)); // Rätt
+
+        // Hämta ett objekt från LS
+        console.log(localStorage.getItem("myObj")); // FEL - OBS! En sträng
+        console.log(JSON.parse(localStorage.getItem("myObj"))); // Rätt
+
+        console.log(localStorage);
+
+        // Rensa localStorage
+        localStorage.clear();
+
+
+
+    </script>
+</body>
+
+</html>
