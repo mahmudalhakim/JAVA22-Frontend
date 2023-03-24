@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - Demo</title>
+</head>
+
+<body>
+
+    <div id="nav"></div>
+
+    <h1>jQuery - Demo</h1>
+    
+    <div id="demo1"></div>
+
+    <hr>
+
+    <button id="btn1">Hämta data från en textfil</button>
+    <div id="demo2"></div>
+
+    <hr>
+
+    <div id="demo3"></div>
+
+    <hr>
+
+    <h2>Lista alla hundraser från DOG API</h2>
+    <ol id="breeds"></ol>
+
+    <!-- 
+        <script src="jquery-3.6.4.min.js"></script>
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            console.log("Hello jQuery");
+
+            // Hämta text från filen demo.txt
+            // Visa innehållet i diven som har id=demo 
+            $("#demo1").load("demo.txt");
+
+            // Hämta navigeringen från filen nav.html
+            $("#nav").load("nav.html");
+
+            // Hämta data från en fil med hjälp av en knapp
+            $("#btn1").click(function(){
+                $("#demo2").load("demo.txt");
+            });
+
+            // Hämta data från JSON och populera div med id=demo3
+            $.getJSON("person.json" , data => $("#demo3").html(data.name));
+
+            // Hämta alla hundraser från Dog API
+            const url = "https://dog.ceo/api/breeds/list/all";
+            $.getJSON(url, data =>
+                $.each(data.message, (index, value) =>
+                    $("#breeds").append(`<li>${index}</li>`)
+                )
+            );
+            
+        });
+
+    </script>
+</body>
+
+</html>

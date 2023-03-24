@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API - Demo</title>
+</head>
+
+<body>
+    <h1>Fetch API - Demo</h1>
+
+    <button onclick="loadJSON('person.json')">Ladda JSON från en fil</button>
+
+    <hr>
+
+    <button id="getBtn">Hämta alla användare</button>
+    <div id="output"></div>
+
+    <script>
+
+        fetch("demo.txt")
+            .then(resp => resp.text())
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
+
+        fetch("nav.html")
+            .then(resp => resp.text())
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
+
+        fetch("person.json")
+            .then(resp => resp.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
+
+        // Promise syntax
+        function loadJSON(url) {
+            fetch(url)
+                .then(resp => resp.json())
+                .then(data => console.log(data))
+                .catch(err => console.error(err));
+        }
+
+        loadJSON("person.json");
+
+        // async await syntax
+        async function getData(url) {
+            let response = await fetch(url);
+            let data = await response.json();
+            // Render data
+            console.log(data);
+        }
+
+        getData("person.json");
+
+
+        fetch('https://jsonplaceholder.typicode.com/todos/1')
+            .then(response => response.json())
+            .then(json => console.log(json));
+
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => console.log(json));
+
+
+        getData("https://jsonplaceholder.typicode.com/users");
+
+       
+        // Arbeta med att rendera DOM 
+
+        let getBtn = document.getElementById('getBtn');
+       
+        getBtn.addEventListener('click' , function(){
+            getUsers('https://jsonplaceholder.typicode.com/users');
+        });
+
+        async function getUsers(url) {
+            let response = await fetch(url);
+            let data = await response.json();
+            render(data);
+        }
+
+        function render(json){
+            let output = "";
+
+            json.forEach(user => {
+                output += user.name + '<br>';
+            });
+
+            document.getElementById('output').innerHTML = output;
+        }
+
+    </script>
+
+</body>
+
+</html>
