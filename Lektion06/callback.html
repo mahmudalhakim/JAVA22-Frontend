@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback</title>
+</head>
+<body>
+    <h1>Callback</h1>
+    <script>
+
+        const arr = ["A", "B" , "C"];
+
+        // En anonym callback funktion
+        arr.forEach(function(el){
+            console.log(el);
+        })
+
+        // En arrow-funktion 
+        arr.forEach( el => console.log(el));
+
+        // En namngiven callback
+        arr.forEach(printElement);
+
+        function printElement(element, index, array){
+            console.log(`${index}: ${element}`);
+        }
+
+        // Synkron callback
+        console.log("START");
+
+        arr.forEach(el => console.log(el));
+
+        console.log("SLUT");
+
+        // Asynkron callback
+        console.log("START");
+
+        setTimeout(function(){
+            arr.forEach(el => console.log(el));
+        } , 1000);
+
+        console.log("SLUT");
+
+
+
+
+    </script>
+</body>
+</html>
