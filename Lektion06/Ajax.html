@@ -16,6 +16,11 @@
 
     <hr>
 
+    <button id="loadBtnXML">Visa alla titlar från XML-fil</button>
+    <ol id="outputXML"></ol>
+
+    <hr>
+
     <button id="loadBtnJSON">Hämta JSON via Ajax</button>
     <div id="outputJSON"></div>
 
@@ -66,7 +71,52 @@
 
         }
 
+        // Från W3Schools.com
+        // https://www.w3schools.com/js/js_ajax_intro.asp
+        function loadDoc() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                document.getElementById("output").innerHTML = this.responseText;
+            }
+            xhttp.open("GET", "demo.txt", true);
+            xhttp.send();
+        }
 
+
+        // Arbeta med XML
+        let loadBtnXML = document.getElementById("loadBtnXML");
+        loadBtnXML.addEventListener("click", loadXML);
+
+        function loadXML() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "cd_catalog.xml");
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const xmlDoc = xhr.responseXML;
+                    console.log(xmlDoc);
+                    renderXML(xmlDoc);
+                }
+            };
+        }
+
+        function renderXML(xml) {
+            const allCDs = xml.getElementsByTagName("CD");
+            console.log(allCDs); // HTMLCollection
+
+            let list = "";
+
+            for (let cd of allCDs) {
+                console.log(cd);
+                console.dir(cd); // OBS! dir (ej log)
+                list += "<li>" + cd.children[0].innerHTML + "</li>";
+            }
+
+            document.getElementById("outputXML").innerHTML = list;
+
+        }
+
+        // Arbeta med JSON
         let loadBtnJSON = document.getElementById('loadBtnJSON');
         loadBtnJSON.addEventListener('click', loadJSON);
 
@@ -76,8 +126,10 @@
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     console.log(xhr.response); // Sträng
-                    console.log(JSON.parse(xhr.response)); // JSON-objekt
-                    const json = JSON.parse(xhr.response);
+                    
+                    // Parsa till ett JSON-objekt
+                    const json = JSON.parse(xhr.response); 
+                    console.log(json); 
 
                     renderJSON(json);
                 }
