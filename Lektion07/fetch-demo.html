@@ -83,7 +83,12 @@
             let response = await fetch(url);
             let data = await response.json();
             render(data);
+            return data;    
         }
+
+       // Anrop av en async funktion 
+       getUsers('https://jsonplaceholder.typicode.com/users')
+       .then(result => console.log(result));
 
         function render(json) {
             let output = "<table border=1>";
