@@ -15,6 +15,7 @@
     <hr>
 
     <button id="getBtn">Hämta alla användare</button>
+
     <div id="output"></div>
 
     <script>
@@ -34,6 +35,8 @@
             .then(data => console.log(data))
             .catch(err => console.error(err));
 
+
+
         // Promise syntax
         function loadJSON(url) {
             fetch(url)
@@ -47,7 +50,10 @@
         // async await syntax
         async function getData(url) {
             let response = await fetch(url);
+            console.log("response: ");
+            console.dir(response);
             let data = await response.json();
+            console.dir("Data: ", data);
             // Render data
             console.log(data);
         }
@@ -66,12 +72,10 @@
 
         getData("https://jsonplaceholder.typicode.com/users");
 
-       
+
         // Arbeta med att rendera DOM 
 
-        let getBtn = document.getElementById('getBtn');
-       
-        getBtn.addEventListener('click' , function(){
+        document.getElementById('getBtn').addEventListener('click', function () {
             getUsers('https://jsonplaceholder.typicode.com/users');
         });
 
@@ -81,12 +85,21 @@
             render(data);
         }
 
-        function render(json){
-            let output = "";
+        function render(json) {
+            let output = "<table border=1>";
 
             json.forEach(user => {
-                output += user.name + '<br>';
+                // output += "<li>"+ user.name + '</li>';
+                output += `
+                    <tr>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>${user.phone}</td>
+                    </tr>
+                `;
             });
+
+            output += '</table>'
 
             document.getElementById('output').innerHTML = output;
         }
